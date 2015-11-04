@@ -1,0 +1,38 @@
+@import "_variables";
+@import "_reset";
+
+// Insert Sass Styles
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+html, body {
+  @extend .full-width;
+  @extend .full-height;
+}
+
+.calendar-header {
+  @extend .full-width;
+  background-color: #0b97c4;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18pt;
+
+  .left-nav {
+    float: left;
+    padding-left: 10px;
+    cursor: pointer;
+  }
+
+  .right-nav {
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+  }
+}
