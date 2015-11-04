@@ -90,4 +90,34 @@ describe('Calendar Header Component', () => {
 
     expect(doRender).to.throw(Error);
   });
+
+  it('onClick handler for prev nav gets called on click', () => {
+    let handlerCalled = false;
+    const prevHandler = () => {
+      handlerCalled = true;
+    };
+    const header = TestUtils.renderIntoDocument(
+      <CalendarHeader month={moment()} onPrevNavClick={prevHandler}/>
+    );
+    const leftNavDom = header.getDOMNode().childNodes[0].childNodes[0];
+
+    TestUtils.Simulate.click(leftNavDom);
+
+    expect(handlerCalled).to.equal(true);
+  });
+
+  it('onClick handler for next nav gets called on click', () => {
+    let handlerCalled = false;
+    const nextHandler = () => {
+      handlerCalled = true;
+    };
+    const header = TestUtils.renderIntoDocument(
+      <CalendarHeader month={moment()} onNextNavClick={nextHandler}/>
+    );
+    const rightNavDom = header.getDOMNode().childNodes[0].childNodes[2];
+
+    TestUtils.Simulate.click(rightNavDom);
+
+    expect(handlerCalled).to.equal(true);
+  });
 });

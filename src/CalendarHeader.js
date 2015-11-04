@@ -6,6 +6,8 @@ const CalendarHeader = React.createClass({
     showMonthInTitle: React.PropTypes.bool,
     showYearInTitle: React.PropTypes.bool,
     showHeaderNav: React.PropTypes.bool,
+    onNextNavClick: React.PropTypes.func,
+    onPrevNavClick: React.PropTypes.func,
     month: React.PropTypes.object.isRequired,
   },
 
@@ -14,6 +16,10 @@ const CalendarHeader = React.createClass({
       showMonthInTitle: true,
       showYearInTitle: true,
       showHeaderNav: true,
+      onNextNavClick: () => {
+      },
+      onPrevNavClick: () => {
+      },
     };
   },
 
@@ -63,7 +69,7 @@ const CalendarHeader = React.createClass({
       const faClasses = classNames('fa', 'fa-angle-left', 'left-nav');
 
       nav = (
-        <span className={faClasses}/>
+        <span className={faClasses} onClick={this.props.onPrevNavClick}/>
       );
     }
 
@@ -77,7 +83,7 @@ const CalendarHeader = React.createClass({
       const faClasses = classNames('fa', 'fa-angle-right', 'right-nav');
 
       nav = (
-        <span className={faClasses}/>
+        <span className={faClasses} onClick={this.props.onNextNavClick}/>
       );
     }
 

@@ -1,4 +1,3 @@
-require('node-jsx').install({'extension': '.jsx'});
 const React = require('react/addons');
 const Examples = require('./Examples');
 

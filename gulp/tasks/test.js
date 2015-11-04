@@ -6,7 +6,6 @@ const isparta = require('isparta');
 const exit = require('gulp-exit');
 const config = require('../config');
 const empty = require('gulp-empty');
-const reactCompiler = require('../../common.spec/reactCompiler');
 const DEFAULT_COVERAGE_REPORTERS = ['lcov', 'text-summary'];
 const DEFAULT_SPEC_REPORTER = 'spec';
 
@@ -73,7 +72,7 @@ function runTests(sourceGlob, testGlob, reportDir, reporter = DEFAULT_SPEC_REPOR
     gulp.src(sourceGlob)
       .pipe(istanbul({includeUntested: true, instrumenter: isparta.Instrumenter}))
       .on('error', handleErr(tdd, resolve, reject))
-      .pipe(istanbul.hookRequire(reactCompiler.transformRequired, reactCompiler.transform))
+      .pipe(istanbul.hookRequire())
       .on('error', handleErr(tdd, resolve, reject))
       .on('finish', () => {
         _runTests(testGlob, reporter, sourceGlob, reportDir, coverageReporters, tdd, resolve);

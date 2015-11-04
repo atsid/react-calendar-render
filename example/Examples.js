@@ -10,6 +10,12 @@ const injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
 
 const Examples = React.createClass({
+  next() {
+    window.alert('Next month');
+  },
+  prev() {
+    window.alert('Last month');
+  },
   render() {
     const styles = {
       width: '50%',
@@ -20,7 +26,7 @@ const Examples = React.createClass({
 
     return (
       <div style={styles}>
-        <CalendarHeader month={moment()} showYearInTitle={false}/>
+        <CalendarHeader month={moment()} showYearInTitle={false} onNextNavClick={this.next} onPrevNavClick={this.prev}/>
         <CalendarHeader month={moment()} showYearInTitle={true}/>
         <CalendarHeader month={moment()} showMonthInTitle={true} showHeaderNav={false} showYearInTitle={true}/>
         <CalendarHeader month={moment()}/>

@@ -30,9 +30,17 @@ html, body {
     cursor: pointer;
   }
 
+  .left-nav:hover {
+    font-weight: bold;
+  }
+
   .right-nav {
     float: right;
     padding-right: 10px;
     cursor: pointer;
+  }
+
+  .right-nav:hover {
+    font-weight: bold;
   }
 }
