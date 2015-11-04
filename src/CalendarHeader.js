@@ -1,28 +1,7 @@
 const React = require('react/addons');
 const classNames = require('classnames');
 
-const CalendarHeader = React.createClass({
-  propTypes: {
-    showMonthInTitle: React.PropTypes.bool,
-    showYearInTitle: React.PropTypes.bool,
-    showHeaderNav: React.PropTypes.bool,
-    onNextNavClick: React.PropTypes.func,
-    onPrevNavClick: React.PropTypes.func,
-    month: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      showMonthInTitle: true,
-      showYearInTitle: true,
-      showHeaderNav: true,
-      onNextNavClick: () => {
-      },
-      onPrevNavClick: () => {
-      },
-    };
-  },
-
+class CalendarHeader extends React.Component {
   getTitleIfMonthAndYear(titleString) {
     let result = titleString;
 
@@ -31,7 +10,7 @@ const CalendarHeader = React.createClass({
     }
 
     return result;
-  },
+  }
 
   getTitleIfOnlyMonth(titleString) {
     let result = titleString;
@@ -41,7 +20,7 @@ const CalendarHeader = React.createClass({
     }
 
     return result;
-  },
+  }
 
   getTitleIfOnlyYear(titleString) {
     let result = titleString;
@@ -51,7 +30,7 @@ const CalendarHeader = React.createClass({
     }
 
     return result;
-  },
+  }
 
   getTitleString() {
     let titleString = this.getTitleIfMonthAndYear();
@@ -60,7 +39,7 @@ const CalendarHeader = React.createClass({
     titleString = this.getTitleIfOnlyYear(titleString);
 
     return titleString;
-  },
+  }
 
   getLeftNav() {
     let nav = false;
@@ -74,7 +53,7 @@ const CalendarHeader = React.createClass({
     }
 
     return nav;
-  },
+  }
 
   getRightNav() {
     let nav = false;
@@ -88,7 +67,7 @@ const CalendarHeader = React.createClass({
     }
 
     return nav;
-  },
+  }
 
   getHeader() {
     const titleString = this.getTitleString();
@@ -125,7 +104,7 @@ const CalendarHeader = React.createClass({
     }
 
     return result;
-  },
+  }
 
   render() {
     const header = this.getHeader();
@@ -134,7 +113,26 @@ const CalendarHeader = React.createClass({
       <div>
         {header}
       </div>);
+  }
+}
+
+CalendarHeader.propTypes = {
+  showMonthInTitle: React.PropTypes.bool,
+  showYearInTitle: React.PropTypes.bool,
+  showHeaderNav: React.PropTypes.bool,
+  onNextNavClick: React.PropTypes.func,
+  onPrevNavClick: React.PropTypes.func,
+  month: React.PropTypes.object.isRequired,
+};
+
+CalendarHeader.defaultProps = {
+  showMonthInTitle: true,
+  showYearInTitle: true,
+  showHeaderNav: true,
+  onNextNavClick: () => {
   },
-});
+  onPrevNavClick: () => {
+  },
+};
 
 module.exports = CalendarHeader;

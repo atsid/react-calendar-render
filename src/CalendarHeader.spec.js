@@ -15,7 +15,7 @@ describe('Calendar Header Component', () => {
     header = TestUtils.renderIntoDocument(
       <CalendarHeader month={now} showHeaderNav={false}/>
     );
-    domNode = header.getDOMNode();
+    domNode = React.findDOMNode(header);
 
     expect(domNode).to.not.be.undefined;
     expect(domNode.childNodes.length).to.equal(1);
@@ -28,7 +28,7 @@ describe('Calendar Header Component', () => {
     header = TestUtils.renderIntoDocument(
       <CalendarHeader month={now} showHeaderNav={false} showYearInTitle={false}/>
     );
-    domNode = header.getDOMNode();
+    domNode = React.findDOMNode(header);
 
     expect(domNode).to.not.be.undefined;
     expect(domNode.childNodes.length).to.equal(1);
@@ -41,7 +41,7 @@ describe('Calendar Header Component', () => {
     header = TestUtils.renderIntoDocument(
       <CalendarHeader month={now} showHeaderNav={false} showMonthInTitle={false} showYearInTitle={bTrue}/>
     );
-    domNode = header.getDOMNode();
+    domNode = React.findDOMNode(header);
 
     expect(domNode).to.not.be.undefined;
     expect(domNode.childNodes.length).to.equal(1);
@@ -54,7 +54,7 @@ describe('Calendar Header Component', () => {
     header = TestUtils.renderIntoDocument(
       <CalendarHeader month={now}/>
     );
-    domNode = header.getDOMNode();
+    domNode = React.findDOMNode(header);
 
     expect(domNode).to.not.be.undefined;
     expect(domNode.childNodes.length).to.equal(1);
@@ -70,7 +70,7 @@ describe('Calendar Header Component', () => {
     header = TestUtils.renderIntoDocument(
       <CalendarHeader month={now} showMonthInTitle={bTrue} showYearInTitle={bTrue} showHeaderNav={bTrue}/>
     );
-    domNode = header.getDOMNode();
+    domNode = React.findDOMNode(header);
 
     expect(domNode).to.not.be.undefined;
     expect(domNode.childNodes.length).to.equal(1);
@@ -93,13 +93,15 @@ describe('Calendar Header Component', () => {
 
   it('onClick handler for prev nav gets called on click', () => {
     let handlerCalled = false;
+    let leftNavDom;
     const prevHandler = () => {
       handlerCalled = true;
     };
-    const header = TestUtils.renderIntoDocument(
+    header = TestUtils.renderIntoDocument(
       <CalendarHeader month={moment()} onPrevNavClick={prevHandler}/>
     );
-    const leftNavDom = header.getDOMNode().childNodes[0].childNodes[0];
+
+    leftNavDom = React.findDOMNode(header).childNodes[0].childNodes[0];
 
     TestUtils.Simulate.click(leftNavDom);
 
@@ -108,13 +110,15 @@ describe('Calendar Header Component', () => {
 
   it('onClick handler for next nav gets called on click', () => {
     let handlerCalled = false;
+    let rightNavDom;
     const nextHandler = () => {
       handlerCalled = true;
     };
-    const header = TestUtils.renderIntoDocument(
+
+    header = TestUtils.renderIntoDocument(
       <CalendarHeader month={moment()} onNextNavClick={nextHandler}/>
     );
-    const rightNavDom = header.getDOMNode().childNodes[0].childNodes[2];
+    rightNavDom = React.findDOMNode(header).childNodes[0].childNodes[2];
 
     TestUtils.Simulate.click(rightNavDom);
 
