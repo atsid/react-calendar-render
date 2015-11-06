@@ -44,3 +44,96 @@ html, body {
     font-weight: bold;
   }
 }
+
+.calendar-week-row {
+  background-color: #0b97c4;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  @extend .full-width;
+
+  table {
+    table-layout: fixed;
+    @extend .full-width;
+  }
+
+  td {
+    border-left: 1px solid black;
+    color: white;
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.calendar-mv-cell {
+  padding: 5px;
+  font-size: 10pt;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.calendar-mv-bg-cell {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  padding: 0px;
+  font-size: 10pt;
+}
+
+.calendar-container {
+  display: block;
+  position: relative;
+  border-collapse: collapse;
+  background-clip: border-box;
+  box-sizing: content-box;
+  @extend .full-width;
+  @extend .full-height;
+}
+
+.calendar-mv-container {
+  border-spacing: 0px;
+  position: absolute;
+  white-space: nowrap;
+  @extend .full-width;
+  @extend .full-height;
+  left: 0px;
+  bottom: 0px;
+}
+
+.calendar-mv-row-container {
+  overflow: hidden;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  @extend .full-width;
+}
+
+.calendar-mv-row {
+  position: absolute;
+  left: 0px;
+  @extend .full-width;
+  overflow: hidden;
+  display: block;
+}
+
+.calendar-mv-position {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  display: table;
+  table-layout: fixed;
+}
+
+.calendar-mv-bg-position {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  display: table;
+  padding: 0px;
+  table-layout: fixed;
+}
