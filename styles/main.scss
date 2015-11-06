@@ -28,6 +28,7 @@ html, body {
     float: left;
     padding-left: 10px;
     cursor: pointer;
+
   }
 
   .left-nav:hover {
@@ -86,6 +87,7 @@ html, body {
   border-collapse: collapse;
   background-clip: border-box;
   box-sizing: content-box;
+  border: 1px solid black;
   @extend .full-width;
   @extend .full-height;
 }
@@ -136,4 +138,12 @@ html, body {
   display: table;
   padding: 0px;
   table-layout: fixed;
+}
+
+.calendar-day {
+}
+
+.calendar-day-non-current {
+  color: lightgray;
+  font-style: italic;
 }

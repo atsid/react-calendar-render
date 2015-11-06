@@ -81,16 +81,6 @@ describe('Calendar Header Component', () => {
     expect(domNode.childNodes[0].childNodes[2].className).to.equal('fa fa-angle-right right-nav');
   });
 
-  it('generates error if month is not defined', () => {
-    const doRender = () => {
-      header = TestUtils.renderIntoDocument(
-        <CalendarHeader/>
-      );
-    };
-
-    expect(doRender).to.throw(Error);
-  });
-
   it('onClick handler for prev nav gets called on click', () => {
     let handlerCalled = false;
     let leftNavDom;

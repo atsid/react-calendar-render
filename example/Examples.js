@@ -1,7 +1,5 @@
 const React = require('react/addons');
 const Calendar = require('../src/Calendar');
-const CalendarHeader = require('../src/CalendarHeader');
-const CalendarMonthView = require('../src/CalendarMonthView');
 const moment = require('moment');
 
 // Needed for onTouchTap
@@ -12,12 +10,21 @@ const injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
 
 class Examples extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      'month': moment(),
+    };
+  }
+
   next() {
-    window.alert('Next month');
+    this.state.month.add(1, 'month');
+    this.forceUpdate();
   }
 
   prev() {
-    window.alert('Last month');
+    this.state.month.subtract(1, 'month');
+    this.forceUpdate();
   }
 
   render() {
@@ -33,11 +40,17 @@ class Examples extends React.Component {
       verticalAlignment: 'center',
     };
 
+    /* eslint-disable react/jsx-boolean-value */
     return (
       <div style={styles}>
-        <Calendar month={moment()} showWeekHeader={false}/>
+        <Calendar
+          month={this.state.month}
+          onPrevNavClick={this.prev.bind(this)}
+          onNextNavClick={this.next.bind(this)}
+          showWeekHeader={true}/>
       </div>
     );
+    /* eslint-enable react/jsx-boolean-value */
   }
 }
 

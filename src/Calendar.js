@@ -5,27 +5,32 @@ const CalendarMonthView = require('../src/CalendarMonthView');
 const classNames = require('classnames');
 
 class Calendar extends React.Component {
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize.bind(this));
+    this.handleResize();
+  }
+
   getCalendarHeader() {
     let header;
 
     if (this.props.showHeader) {
-      header = <CalendarHeader
+      header = (<CalendarHeader
         showMonthInTitle={this.props.showMonthInTitle}
         showYearInTitle={this.props.showYearInTitle}
         showHeaderNav={this.props.showHeaderNav}
         onNextNavClick={this.props.onNextNavClick}
         onPrevNavClick={this.props.onPrevNavClick}
-        month={this.props.month}/>
+        month={this.props.month}/>);
     }
 
     return header;
   }
 
   getCalendarBody() {
-    return <CalendarMonthView
+    return (<CalendarMonthView
       forceSixWeek={this.props.forceSixWeek}
       showWeekHeader={this.props.showWeekHeader}
-      month={this.props.month}/>;
+      month={this.props.month}/>);
   }
 
   getHeaderNode(rootNode) {
@@ -63,11 +68,6 @@ class Calendar extends React.Component {
       viewNode.style.top = '0px';
       viewNode.style.height = `${rootNode.offsetHeight}px`;
     }
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.handleResize.bind(this));
-    this.handleResize();
   }
 
   render() {
