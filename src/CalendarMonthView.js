@@ -1,4 +1,5 @@
-const React = require('react/addons');
+const React = require('react');
+const { findDOMNode } = require('react-dom');
 const classNames = require('classnames');
 const DefaultDayRenderer = require('./CalendarDayRenderer');
 
@@ -100,7 +101,7 @@ class CalendarMonthView extends React.Component {
   }
 
   handleResize() {
-    const rootNode = React.findDOMNode(this);
+    const rootNode = findDOMNode(this);
     const headerNode = this.getHeaderNode(rootNode);
     const rowNodes = this.getRowNodes(rootNode);
     const height = headerNode ? rootNode.clientHeight - headerNode.clientHeight : rootNode.clientHeight;
@@ -128,7 +129,8 @@ class CalendarMonthView extends React.Component {
   }
 
   renderDay(day) {
-    const renderedDay = (<DefaultDayRenderer month={this.props.month} day={day.clone()}/>);
+    const DayRenderer = this.props.dayRenderer;
+    const renderedDay = (<DayRenderer month={this.props.month} day={day.clone()}/>);
 
     day.add(1, 'day');
 
@@ -137,8 +139,8 @@ class CalendarMonthView extends React.Component {
 
   render() {
     const rowCount = this.getRowCount();
-    const tableClassName = classNames('full-width', 'full-height', 'calendar-mv-position');
-    const tableClassName2 = classNames('full-width', 'full-height', 'calendar-mv-bg-position');
+    const tableClassName = classNames('calendar-mv-position');
+    const tableClassName2 = classNames('calendar-mv-bg-position');
     const tableCellClassName = classNames('calendar-mv-cell');
     const tableCellBackgroundClassName = classNames('calendar-mv-bg-cell');
     const calendarClassName = classNames('calendar-mv-container');
@@ -194,7 +196,7 @@ CalendarMonthView.propTypes = {
   forceSixWeek: React.PropTypes.bool,
   month: React.PropTypes.object.isRequired,
   showWeekHeader: React.PropTypes.bool,
-  dayRenderer: React.PropTypes.element,
+  dayRenderer: React.PropTypes.object,
   weekdays: React.PropTypes.array,
 };
 

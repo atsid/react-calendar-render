@@ -1,7 +1,8 @@
 require('../common.spec/spec.helpers');
 const { expect } = require('chai');
-const React = require('react/addons');
-const TestUtils = React.addons.TestUtils;
+const React = require('react');
+const TestUtils = require('react-addons-test-utils');
+const { findDOMNode } = require('react-dom');
 const CalendarHeader = require('./CalendarHeader');
 const moment = require('moment');
 
@@ -11,74 +12,53 @@ describe('Calendar Header Component', () => {
   let header;
 
   it('does not display nav with showHeaderNav=false', () => {
-    let domNode;
     header = TestUtils.renderIntoDocument(
       <CalendarHeader month={now} showHeaderNav={false}/>
     );
-    domNode = React.findDOMNode(header);
 
-    expect(domNode).to.not.be.undefined;
-    expect(domNode.childNodes.length).to.equal(1);
-    expect(domNode.childNodes[0].className).to.equal('calendar-header');
-    expect(domNode.childNodes[0].textContent).to.equal(now.format('MMMM YYYY'));
+    expect(header).to.not.have.xpath(`//div/div[@class='calendar-header']/span[@class='fa fa-angle-left left-nav']`);
+    expect(header).to.have.xpath(`//div/div[@class='calendar-header']/span[text()="${now.format('MMMM YYYY')}"]`);
+    expect(header).to.not.have.xpath(`//div/div[@class='calendar-header']/span[@class='fa fa-angle-right right-nav']`);
   });
 
   it('does not display year with showYearInTitle=false', () => {
-    let domNode;
     header = TestUtils.renderIntoDocument(
       <CalendarHeader month={now} showHeaderNav={false} showYearInTitle={false}/>
     );
-    domNode = React.findDOMNode(header);
 
-    expect(domNode).to.not.be.undefined;
-    expect(domNode.childNodes.length).to.equal(1);
-    expect(domNode.childNodes[0].className).to.equal('calendar-header');
-    expect(domNode.childNodes[0].textContent).to.equal(now.format('MMMM'));
+    expect(header).to.not.have.xpath(`//div/div[@class='calendar-header']/span[@class='fa fa-angle-left left-nav']`);
+    expect(header).to.have.xpath(`//div/div[@class='calendar-header']/span[text()="${now.format('MMMM')}"]`);
+    expect(header).to.not.have.xpath(`//div/div[@class='calendar-header']/span[@class='fa fa-angle-right right-nav']`);
   });
 
   it('displays year if showYearInTitle=true with showMonthInTitle=false', () => {
-    let domNode;
     header = TestUtils.renderIntoDocument(
       <CalendarHeader month={now} showHeaderNav={false} showMonthInTitle={false} showYearInTitle={bTrue}/>
     );
-    domNode = React.findDOMNode(header);
 
-    expect(domNode).to.not.be.undefined;
-    expect(domNode.childNodes.length).to.equal(1);
-    expect(domNode.childNodes[0].className).to.equal('calendar-header');
-    expect(domNode.childNodes[0].textContent).to.equal(now.format('YYYY'));
+    expect(header).to.not.have.xpath(`//div/div[@class='calendar-header']/span[@class='fa fa-angle-left left-nav']`);
+    expect(header).to.have.xpath(`//div/div[@class='calendar-header']/span[text()="${now.format('YYYY')}"]`);
+    expect(header).to.not.have.xpath(`//div/div[@class='calendar-header']/span[@class='fa fa-angle-right right-nav']`);
   });
 
   it('shows nav, month and year with no values (defaults)', () => {
-    let domNode;
     header = TestUtils.renderIntoDocument(
       <CalendarHeader month={now}/>
     );
-    domNode = React.findDOMNode(header);
 
-    expect(domNode).to.not.be.undefined;
-    expect(domNode.childNodes.length).to.equal(1);
-    expect(domNode.childNodes[0].className).to.equal('calendar-header');
-    expect(domNode.childNodes[0].childNodes.length).to.equal(3);
-    expect(domNode.childNodes[0].childNodes[0].className).to.equal('fa fa-angle-left left-nav');
-    expect(domNode.childNodes[0].childNodes[1].textContent).to.equal(now.format('MMMM YYYY'));
-    expect(domNode.childNodes[0].childNodes[2].className).to.equal('fa fa-angle-right right-nav');
+    expect(header).to.have.xpath(`//div/div[@class='calendar-header']/span[@class='fa fa-angle-left left-nav']`);
+    expect(header).to.have.xpath(`//div/div[@class='calendar-header']/span[text()="${now.format('MMMM YYYY')}"]`);
+    expect(header).to.have.xpath(`//div/div[@class='calendar-header']/span[@class='fa fa-angle-right right-nav']`);
   });
 
   it('shows nav, month and year with all set to true', () => {
-    let domNode;
     header = TestUtils.renderIntoDocument(
       <CalendarHeader month={now} showMonthInTitle={bTrue} showYearInTitle={bTrue} showHeaderNav={bTrue}/>
     );
-    domNode = React.findDOMNode(header);
 
-    expect(domNode).to.not.be.undefined;
-    expect(domNode.childNodes.length).to.equal(1);
-    expect(domNode.childNodes[0].className).to.equal('calendar-header');
-    expect(domNode.childNodes[0].childNodes.length).to.equal(3);
-    expect(domNode.childNodes[0].childNodes[0].className).to.equal('fa fa-angle-left left-nav');
-    expect(domNode.childNodes[0].childNodes[1].textContent).to.equal(now.format('MMMM YYYY'));
-    expect(domNode.childNodes[0].childNodes[2].className).to.equal('fa fa-angle-right right-nav');
+    expect(header).to.have.xpath(`//div/div[@class='calendar-header']/span[@class='fa fa-angle-left left-nav']`);
+    expect(header).to.have.xpath(`//div/div[@class='calendar-header']/span[text()="${now.format('MMMM YYYY')}"]`);
+    expect(header).to.have.xpath(`//div/div[@class='calendar-header']/span[@class='fa fa-angle-right right-nav']`);
   });
 
   it('onClick handler for prev nav gets called on click', () => {
@@ -91,7 +71,7 @@ describe('Calendar Header Component', () => {
       <CalendarHeader month={moment()} onPrevNavClick={prevHandler}/>
     );
 
-    leftNavDom = React.findDOMNode(header).childNodes[0].childNodes[0];
+    leftNavDom = findDOMNode(header).childNodes[0].childNodes[0];
 
     TestUtils.Simulate.click(leftNavDom);
 
@@ -108,7 +88,7 @@ describe('Calendar Header Component', () => {
     header = TestUtils.renderIntoDocument(
       <CalendarHeader month={moment()} onNextNavClick={nextHandler}/>
     );
-    rightNavDom = React.findDOMNode(header).childNodes[0].childNodes[2];
+    rightNavDom = findDOMNode(header).childNodes[0].childNodes[2];
 
     TestUtils.Simulate.click(rightNavDom);
 

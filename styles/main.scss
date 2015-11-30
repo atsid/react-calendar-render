@@ -128,6 +128,8 @@ html, body {
   right: 0px;
   display: table;
   table-layout: fixed;
+  @extend .full-width;
+  @extend .full-height;
 }
 
 .calendar-mv-bg-position {
@@ -138,6 +140,8 @@ html, body {
   display: table;
   padding: 0px;
   table-layout: fixed;
+  @extend .full-width;
+  @extend .full-height;
 }
 
 .calendar-day {

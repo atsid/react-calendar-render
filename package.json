@@ -24,6 +24,7 @@
     "browserify": "^12.0.0",
     "browserify-shim": "^3.8.11",
     "chai": "^3.3",
+    "chai-have-xpath": "1.2.2",
     "codeclimate-test-reporter": "^0.1.0",
     "envify": "^3.4.0",
     "eslint-config-ats": "0.1.0",
@@ -48,15 +49,19 @@
     "livereactload": "^0.7.0",
     "mocha": "git://github.com/davija/mocha.git#master",
     "mr-cluster": "^0.1.1",
+    "react-addons-test-utils": "0.14.2",
+    "react-dom": "0.14.2",
     "react-tools": "0.13.3",
     "run-sequence": "^1.1.2",
     "serve-static": "1.10.0",
+    "sinon": "1.17.2",
     "supertest": "^1.1.0",
     "supertest-session": "^1.2.0",
     "uglifyify": "^3.0.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.2.3"
+    "watchify": "^3.2.3",
+    "xpath-evaluator": "2.0.0"
   },
   "dependencies": {
     "babel": "^5.8.3",
@@ -71,8 +76,8 @@
     "lodash": "^3.10.0",
     "marked": "^0.3.5",
     "moment": "^2.10.0",
-    "react": "^0.13",
-    "react-tap-event-plugin": "0.1.6"
+    "react": "^0.14.0",
+    "react-tap-event-plugin": "0.2.1"
   },
   "browserify-shim": {}
 }

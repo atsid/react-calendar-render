@@ -1,4 +1,4 @@
-const React = require('react/addons');
+const React = require('react');
 const moment = require('moment');
 const CalendarHeader = require('../src/CalendarHeader');
 const CalendarMonthView = require('../src/CalendarMonthView');
@@ -86,8 +86,6 @@ class Calendar extends React.Component {
 
 Calendar.propTypes = {
   forceSixWeek: React.PropTypes.bool,
-  selectable: React.PropTypes.bool,
-  enableMultiDayEvents: React.PropTypes.bool,
   showMonthInTitle: React.PropTypes.bool,
   showYearInTitle: React.PropTypes.bool,
   showHeaderNav: React.PropTypes.bool,
@@ -100,8 +98,6 @@ Calendar.propTypes = {
 
 Calendar.defaultProps = {
   forceSixWeek: false,
-  selectable: false,
-  enableMultiDayEvents: true,
   showHeader: true,
   month: moment(),
 };
