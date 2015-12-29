@@ -2,8 +2,6 @@ language: node_js
 node_js:
   - "4.0"
 sudo: false
-services:
-  - mongodb
 before_script:
   - npm shrinkwrap
 after_script: npm run report-coverage

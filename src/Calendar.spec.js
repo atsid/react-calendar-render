@@ -1,64 +1,84 @@
 require('../common.spec/spec.helpers');
-const { expect } = require('chai');
-const React = require('react');
-const TestUtils = require('react-addons-test-utils');
 const Calendar = require('./Calendar');
-// const CalendarHeader = require('./CalendarHeader');
-// const CalendarMonthView = require('./CalendarMonthView');
+const CalendarHeader = require('./CalendarHeader');
+const CalendarMonthView = require('./CalendarMonthView');
+const { expect } = require('chai');
 const moment = require('moment');
+const React = require('react');
 const sinon = require('sinon');
-// const { findDOMNode } = require('react-dom');
+const TestUtils = require('react-addons-test-utils');
 
 describe('The Calendar class', () => {
-  const calendarXpath = `//div[@class='calendar-container']`;
-  const headerXpath = `${calendarXpath}/div/div[@class='calendar-header']`;
-  const calendarViewContainer = `${calendarXpath}/div[@class='calendar-mv-container']`;
-  const calendarViewRowContainer = `${calendarViewContainer}/div[@class='calendar-mv-row-container']`;
-  const calendarRow = `${calendarViewRowContainer}/div[@class='calendar-mv-row']`;
   const bTrue = true;
   let now = moment();
   let rendered;
 
   it('renders full calendar with headers with default values', () => {
+    let header;
+    let body;
+
     rendered = TestUtils.renderIntoDocument(
       <Calendar month={now}/>
     );
 
     // Validate header exists
-    expect(rendered).to.have.xpath(`${headerXpath}/span[@class='fa fa-angle-left left-nav']`);
-    expect(rendered).to.have.xpath(`${headerXpath}/span[text()="${now.format('MMMM YYYY')}"]`);
-    expect(rendered).to.have.xpath(`${headerXpath}/span[@class='fa fa-angle-right right-nav']`);
+    header = TestUtils.findRenderedComponentWithType(rendered, CalendarHeader);
+
+    expect(header.props.showYearInTitle).to.equal(true);
+    expect(header.props.showHeaderNav).to.equal(true);
+    expect(header.props.showMonthInTitle).to.equal(true);
+    expect(header.props.month).to.equal(now);
 
     // Validate view exists
-    expect(rendered).to.have.xpath(calendarRow);
+    body = TestUtils.findRenderedComponentWithType(rendered, CalendarMonthView);
+
+    expect(body.props.forceSixWeek).to.equal(false);
+    expect(body.props.month).to.equal(now);
   });
 
   it('passes in showHeaderNav and showYearInTitle to header', () => {
+    let header;
+    let body;
+
     rendered = TestUtils.renderIntoDocument(
       <Calendar month={now} showHeaderNav={false} showYearInTitle={false}/>
     );
 
     // Validate header exists
-    expect(rendered).to.not.have.xpath(`${headerXpath}/span[@class='fa fa-angle-left left-nav']`);
-    expect(rendered).to.have.xpath(`${headerXpath}/span[text()="${now.format('MMMM')}"]`);
-    expect(rendered).to.not.have.xpath(`${headerXpath}/span[@class='fa fa-angle-right right-nav']`);
+    header = TestUtils.findRenderedComponentWithType(rendered, CalendarHeader);
+
+    expect(header.props.showYearInTitle).to.equal(false);
+    expect(header.props.showHeaderNav).to.equal(false);
+    expect(header.props.month).to.equal(now);
 
     // Validate view exists
-    expect(rendered).to.have.xpath(calendarRow);
+    body = TestUtils.findRenderedComponentWithType(rendered, CalendarMonthView);
+
+    expect(body.props.forceSixWeek).to.equal(false);
+    expect(body.props.month).to.equal(now);
   });
 
   it('passes in showMonthInTitle to header', () => {
+    let header;
+    let body;
+
     rendered = TestUtils.renderIntoDocument(
       <Calendar month={now} showMonthInTitle={false}/>
     );
 
     // Validate header exists
-    expect(rendered).to.have.xpath(`${headerXpath}/span[@class='fa fa-angle-left left-nav']`);
-    expect(rendered).to.have.xpath(`${headerXpath}/span[text()="${now.format('YYYY')}"]`);
-    expect(rendered).to.have.xpath(`${headerXpath}/span[@class='fa fa-angle-right right-nav']`);
+    header = TestUtils.findRenderedComponentWithType(rendered, CalendarHeader);
+
+    expect(header.props.showYearInTitle).to.equal(true);
+    expect(header.props.showHeaderNav).to.equal(true);
+    expect(header.props.showMonthInTitle).to.equal(false);
+    expect(header.props.month).to.equal(now);
 
     // Validate view exists
-    expect(rendered).to.have.xpath(calendarRow);
+    body = TestUtils.findRenderedComponentWithType(rendered, CalendarMonthView);
+
+    expect(body.props.forceSixWeek).to.equal(false);
+    expect(body.props.month).to.equal(now);
   });
 
   it('passes in click handlers to header', () => {
@@ -91,27 +111,46 @@ describe('The Calendar class', () => {
   });
 
   it('does not show header when showHeader=false', () => {
+    let body;
+
     rendered = TestUtils.renderIntoDocument(
       <Calendar month={now} showHeader={false}/>
     );
 
-    expect(rendered).to.not.have.xpath(headerXpath);
+    // Validate header does not exist
+    expect(() => {
+      TestUtils.findRenderedComponentWithType(rendered, CalendarHeader);
+    }).to.throw(Error);
+
+    // Validate view exists
+    body = TestUtils.findRenderedComponentWithType(rendered, CalendarMonthView);
+
+    expect(body.props.forceSixWeek).to.equal(false);
+    expect(body.props.month).to.equal(now);
   });
 
   it('passes in forceSixWeek to view', () => {
+    let header;
+    let body;
+
     now = moment('20150201', 'YYYYMMDD');
     rendered = TestUtils.renderIntoDocument(
       <Calendar month={now} forceSixWeek={bTrue}/>
     );
 
+    // Validate header exists
+    header = TestUtils.findRenderedComponentWithType(rendered, CalendarHeader);
+
+    expect(header.props.showYearInTitle).to.equal(true);
+    expect(header.props.showHeaderNav).to.equal(true);
+    expect(header.props.showMonthInTitle).to.equal(true);
+    expect(header.props.month).to.equal(now);
+
     // Validate view exists
-    expect(rendered).to.have.xpath(`${calendarRow}[1]`);
-    expect(rendered).to.have.xpath(`${calendarRow}[2]`);
-    expect(rendered).to.have.xpath(`${calendarRow}[3]`);
-    expect(rendered).to.have.xpath(`${calendarRow}[4]`);
-    expect(rendered).to.have.xpath(`${calendarRow}[5]`);
-    expect(rendered).to.have.xpath(`${calendarRow}[6]`);
-    expect(rendered).to.not.have.xpath(`${calendarRow}[7]`);
+    body = TestUtils.findRenderedComponentWithType(rendered, CalendarMonthView);
+
+    expect(body.props.forceSixWeek).to.equal(true);
+    expect(body.props.month).to.equal(now);
   });
 
   it('passes showWeekHeader to view', () => {

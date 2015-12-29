@@ -74,6 +74,7 @@ class CalendarHeader extends React.Component {
     const leftNav = this.getLeftNav();
     const rightNav = this.getRightNav();
     const headerClass = classNames('calendar-header');
+    const headerTextClass = classNames('calendar-header-text');
     let result = false;
 
     if ((leftNav && rightNav) || titleString) {
@@ -82,7 +83,7 @@ class CalendarHeader extends React.Component {
           result = (
             <div className={headerClass}>
               {leftNav}
-              <span>{titleString}</span>
+              <span className={headerTextClass}>{titleString}</span>
               {rightNav}
             </div>
           );
@@ -97,7 +98,7 @@ class CalendarHeader extends React.Component {
       } else {
         result = (
           <div className={headerClass}>
-            <span>{titleString}</span>
+            <span className={headerTextClass}>{titleString}</span>
           </div>
         );
       }

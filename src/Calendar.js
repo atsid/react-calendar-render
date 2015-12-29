@@ -1,4 +1,5 @@
 const React = require('react');
+const { findDOMNode } = require('react-dom');
 const moment = require('moment');
 const CalendarHeader = require('../src/CalendarHeader');
 const CalendarMonthView = require('../src/CalendarMonthView');
@@ -56,7 +57,7 @@ class Calendar extends React.Component {
   }
 
   handleResize() {
-    const rootNode = React.findDOMNode(this);
+    const rootNode = findDOMNode(this);
     const headerNode = this.getHeaderNode(rootNode);
     const viewNode = this.getViewNode(rootNode);
 
@@ -76,10 +77,7 @@ class Calendar extends React.Component {
     const body = this.getCalendarBody();
 
     return (
-      <div className={wrapperClass}>
-        {header}
-        {body}
-      </div>
+      <div className={wrapperClass}>{header}{body}</div>
     );
   }
 }
