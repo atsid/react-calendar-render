@@ -16,7 +16,10 @@
     "test": "gulp",
     "report-coverage": "codeclimate-test-reporter < target/test-reports/all/lcov.info"
   },
-  "keywords": ["react", "calendar"],
+  "keywords": [
+    "react",
+    "calendar"
+  ],
   "devDependencies": {
     "babel-eslint": "^4.1",
     "babelify": "^6.1.3",

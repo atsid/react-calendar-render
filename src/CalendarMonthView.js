@@ -75,6 +75,7 @@ class CalendarMonthView extends React.Component {
 
   getWeekRow() {
     const weekdayRow = classNames('calendar-week-row');
+    const weekdayClass = classNames('calendar-weekday');
     let row = null;
 
     if (this.props.showWeekHeader) {
@@ -83,13 +84,13 @@ class CalendarMonthView extends React.Component {
           <table>
             <tbody>
             <tr>
-              <td>{this.props.weekdays[0]}</td>
-              <td>{this.props.weekdays[1]}</td>
-              <td>{this.props.weekdays[2]}</td>
-              <td>{this.props.weekdays[3]}</td>
-              <td>{this.props.weekdays[4]}</td>
-              <td>{this.props.weekdays[5]}</td>
-              <td>{this.props.weekdays[6]}</td>
+              <td className={weekdayClass}>{this.props.weekdays[0]}</td>
+              <td className={weekdayClass}>{this.props.weekdays[1]}</td>
+              <td className={weekdayClass}>{this.props.weekdays[2]}</td>
+              <td className={weekdayClass}>{this.props.weekdays[3]}</td>
+              <td className={weekdayClass}>{this.props.weekdays[4]}</td>
+              <td className={weekdayClass}>{this.props.weekdays[5]}</td>
+              <td className={weekdayClass}>{this.props.weekdays[6]}</td>
             </tr>
             </tbody>
           </table>
@@ -196,7 +197,7 @@ CalendarMonthView.propTypes = {
   forceSixWeek: React.PropTypes.bool,
   month: React.PropTypes.object.isRequired,
   showWeekHeader: React.PropTypes.bool,
-  dayRenderer: React.PropTypes.object,
+  dayRenderer: React.PropTypes.func,
   weekdays: React.PropTypes.array,
 };
 
