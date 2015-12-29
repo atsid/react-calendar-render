@@ -6,3 +6,10 @@
 
 # react-calendar-render
 React calendar component with ability to add custom rendering
+
+# Requirements
+* Gulp
+
+# Example
+* Run ```gulp develop```
+* Browse to http://localhost:3000/
