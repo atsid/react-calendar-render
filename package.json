@@ -68,7 +68,7 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.2.3",
-    "xpath-evaluator": "2.0.0",
+    "xpath-evaluator": "2.0.0"
   },
   "dependencies": {
     "babel": "^5.8.3",
