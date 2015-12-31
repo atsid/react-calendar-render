@@ -1,5 +1,6 @@
 {
   "name": "react-calendar-render",
+  "version": "0.1.0",
   "description": "React calendar component with ability to add custom rendering",
   "license": "Apache-2.0",
   "author": {
