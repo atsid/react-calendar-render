@@ -1,8 +1,9 @@
 {
   "name": "react-calendar-render",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React calendar component with ability to add custom rendering",
   "license": "Apache-2.0",
+  "main": "./lib/index.js",
   "author": {
     "name": "James Davis",
     "email": "james.davis@atsid.com",
@@ -16,7 +17,7 @@
     "test": "gulp",
     "report-coverage": "codeclimate-test-reporter < target/test-reports/all/lcov.info",
     "prepublish": "npm run babel",
-    "babel": "babel src --out-dir lib",
+    "babel": "babel src --out-dir lib"
   },
   "keywords": [
     "react",

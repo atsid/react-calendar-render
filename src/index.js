@@ -1,3 +1,3 @@
-const Calendar = require('./lib/Calendar');
+const Calendar = require('./Calendar');
 
 module.exports = {Calendar};
