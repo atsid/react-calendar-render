@@ -27,6 +27,6 @@ describe('Simple Calender Day Renderer', () => {
       <CalenderDayRenderer month={now} day={now.clone().subtract(1, 'month')}/>
     );
 
-    expect(rendered).to.have.xpath(`//table/tbody/tr/td[text()='${now.date()}'][@class='calendar-day-non-current']`);
+    expect(rendered).to.have.xpath(`//table/tbody/tr/td[text()='${now.clone().subtract(1, 'month').date()}'][@class='calendar-day-non-current']`);
   });
 });
