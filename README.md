@@ -8,6 +8,7 @@
 React calendar component with ability to add custom rendering
 
 # Requirements
+* Node v4+
 * Gulp
 
 # Example
