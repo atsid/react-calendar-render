@@ -9,7 +9,7 @@ const moment = require('moment');
 const injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
 
-class Examples extends React.Component {
+class Examples2 extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -43,6 +43,7 @@ class Examples extends React.Component {
     /* eslint-disable react/jsx-boolean-value */
     return (
       <div style={styles}>
+        TEST 2
         <Calendar
           month={this.state.month}
           onPrevNavClick={this.prev.bind(this)}
@@ -54,4 +55,4 @@ class Examples extends React.Component {
   }
 }
 
-module.exports = Examples;
+module.exports = Examples2;
