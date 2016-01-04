@@ -157,6 +157,7 @@ class CalendarMonthView extends React.Component {
           {Array(rowCount).fill().map((data, index) => {
             return (
               <div className={tableRow}
+                   key={index}
                    style={{top: this.getPercent(index, rowCount)}}>
                 <table className={tableClassName2}>
                   <tbody>
