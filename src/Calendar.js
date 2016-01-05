@@ -1,8 +1,8 @@
 const React = require('react');
 const { findDOMNode } = require('react-dom');
 const moment = require('moment');
-const CalendarHeader = require('../src/CalendarHeader');
-const CalendarMonthView = require('../src/CalendarMonthView');
+const CalendarHeader = require('./CalendarHeader');
+const CalendarMonthView = require('./CalendarMonthView');
 const classNames = require('classnames');
 const DefaultDayRenderer = require('./CalendarDayRenderer');
 
