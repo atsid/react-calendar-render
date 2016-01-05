@@ -4,6 +4,7 @@ const moment = require('moment');
 const CalendarHeader = require('./CalendarHeader');
 const CalendarMonthView = require('./CalendarMonthView');
 const classNames = require('classnames');
+const DefaultDayRenderer = require('./CalendarDayRenderer');
 
 class Calendar extends React.Component {
   componentDidMount() {
@@ -31,7 +32,8 @@ class Calendar extends React.Component {
     return (<CalendarMonthView
       forceSixWeek={this.props.forceSixWeek}
       showWeekHeader={this.props.showWeekHeader}
-      month={this.props.month}/>);
+      month={this.props.month}
+      dayRenderer={this.props.dayRenderer}/>);
   }
 
   getHeaderNode(rootNode) {
@@ -92,12 +94,14 @@ Calendar.propTypes = {
   onNextNavClick: React.PropTypes.func,
   onPrevNavClick: React.PropTypes.func,
   month: React.PropTypes.object.isRequired,
+  dayRenderer: React.PropTypes.func,
 };
 
 Calendar.defaultProps = {
   forceSixWeek: false,
   showHeader: true,
   month: moment(),
+  dayRenderer: DefaultDayRenderer,
 };
 
 module.exports = Calendar;
